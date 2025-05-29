@@ -1,0 +1,8 @@
+name: jupyter
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - jupyterlab
+  - notebook
+  - nb_conda_kernels

@@ -2,8 +2,6 @@
 
 # Based on the thoughtbot laptop script!
 
-set -e
-
 append_to_zshrc() {
   local text="$1" zshrc
   local skip_new_line="${2:-0}"
@@ -20,8 +18,6 @@ append_to_zshrc() {
     else
       printf "\\n%s\\n" "$text" >> "$zshrc"
     fi
-  else
-    echo "\n.zshrc already contains \"$text\"\n" 
   fi
 }
 
@@ -49,7 +45,23 @@ else
 fi
 
 append_to_zshrc "eval \"\$($HOMEBREW_PREFIX/bin/brew shellenv)\""
+source ~/.zshrc
+
+brew install git
+
+brew install pyenv
+append_to_zshrc 'export PYENV_ROOT="$HOME/.pyenv"'
+append_to_zshrc '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' 1
+append_to_zshrc 'eval "$(pyenv init - zsh)"' 1
+
+source ~/.zshrc
+pyenv install -s 3.13
+pyenv global 3.13
 
 # Install pipx for global python cli apps
 brew install pipx
-pipx ensurepath
+pipx ensurepath --quiet
+
+pipx install poetry
+pipx install pre-commit
+pipx install ruff

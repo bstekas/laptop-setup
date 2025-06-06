@@ -33,6 +33,12 @@ conda --version 2> /dev/null || (
 conda update conda
 conda config --add create_default_packages ipykernel
 
+# Create conda envs
+for file in ./conda/*.yaml; do
+  echo "$file"
+  conda env create --quiet -f "$file"
+done
+
 # Install Homebrew
 brew --version 2> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 

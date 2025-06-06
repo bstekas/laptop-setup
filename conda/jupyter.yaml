@@ -3,6 +3,7 @@ channels:
   - defaults
   - conda-forge
 dependencies:
+  - python=3.13
   - jupyterlab
   - notebook
   - nb_conda_kernels

@@ -13,4 +13,3 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 # Install pipx for global python cli apps
 scoop install pipx
 pipx ensurepath
-
